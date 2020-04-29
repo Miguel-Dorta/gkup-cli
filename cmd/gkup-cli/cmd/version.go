@@ -12,8 +12,8 @@ var (
 		Use:                        "version",
 		Short:                      "print version",
 		Run: func(_ *cobra.Command, _ []string) {
-			out := gkup.Exec("-action=VERSION")
-			fmt.Printf("gkup-cli: %s\ngkup: %s\n", internal.Version, string(out))
+			fmt.Printf("gkup-cli: %s\n", internal.Version)
+			fmt.Printf("gkup-core: %s\n", gkup.Exec("-action=VERSION"))
 		},
 	}
 )

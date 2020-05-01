@@ -19,5 +19,5 @@ var (
 
 func init() {
 	cmdRoot.AddCommand(cmdCreate)
-	cmdCreate.Flags().StringVarP(&hashAlgorithm, "hash-algorithm", "h", "sha256", "Set repository's hash algorithm")
+	cmdCreate.Flags().StringVarP(&hashAlgorithm, "hash-algorithm", "H", "sha256", "Set repository's hash algorithm")
 }

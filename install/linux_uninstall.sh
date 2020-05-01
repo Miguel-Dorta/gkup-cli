@@ -1,1 +1,1 @@
-rm -R /opt/Miguel-Dorta/gkup /etc/profile.d/gkup.sh
+sudo rm -R /opt/Miguel-Dorta/gkup /etc/profile.d/gkup.sh

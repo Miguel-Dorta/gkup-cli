@@ -29,26 +29,24 @@ func getSnapList(_ *cobra.Command, _ []string) {
 		log.Criticalf("error parsing snapshots: %s", err)
 	}
 
-	snapList := make([]string, len(snaps))
+	snapNameList := make([]string, 0, len(snaps))
 	for k := range snaps {
-		snapList = append(snapList, k)
+		snapNameList = append(snapNameList, k)
 	}
-	sort.Strings(snapList)
+	sort.Strings(snapNameList)
 
-	for _, s := range snapList {
-		timeList := snaps[s]
-		sort.Slice(timeList, func(i, j int) bool { return timeList[i] < timeList[j] })
-
-		if s == "" {
-			s = "[no-name]"
+	for _, snapName := range snapNameList {
+		if snapName != "" {
+			fmt.Println(snapName)
+		} else {
+			fmt.Println("[no-name]")
 		}
-		fmt.Println(s)
 
-		for _, i := range timeList {
-			t := time.Unix(i, 0).Local()
+		sort.Slice(snaps[snapName], func(i, j int) bool {return snaps[snapName][i] < snaps[snapName][j]})
+		for _, snapTime := range snaps[snapName] {
+			t := time.Unix(snapTime, 0).Local()
 			fmt.Printf("  - %04d/%02d/%02d %02d:%02d:%02d\n", t.Year(), t.Month(), t.Day(), t.Hour(), t.Minute(), t.Second())
 		}
-
 		fmt.Println()
 	}
 }

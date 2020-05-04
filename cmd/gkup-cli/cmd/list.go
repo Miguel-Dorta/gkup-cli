@@ -14,15 +14,20 @@ var (
 	cmdList = &cobra.Command{
 		Use:   "list",
 		Short: "list snapshots",
-		Run: getSnapList,
 	}
 )
 
 func init() {
 	cmdRoot.AddCommand(cmdList)
+	cmdList.Run = getSnapList
 }
 
 func getSnapList(_ *cobra.Command, _ []string) {
+	if repoPath == "" {
+		cmdList.Help()
+		log.Critical("repository path not defined")
+	}
+
 	var snaps map[string][]int64
 	out := gkup.Exec("-action=LIST", "-repo="+repoPath)
 	if err := json.Unmarshal(out, &snaps); err != nil {

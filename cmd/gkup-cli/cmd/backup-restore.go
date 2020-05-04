@@ -16,43 +16,57 @@ var (
 	cmdBackup          = &cobra.Command{
 		Use:   "backup",
 		Short: "take a snapshot of the files provided",
-		Run: func(_ *cobra.Command, args []string) {
-			gkupArgs := []string{
-				"-action=BACKUP",
-				"-repo=" + repoPath,
-				"-snapshot-name=" + snapName,
-				"-v=" + strconv.FormatBool(verbose),
-			}
-			gkupArgs = append(gkupArgs, args...)
-			gkup.ExecPrintingStatus(gkupArgs...)
-		},
 	}
 	cmdRestore = &cobra.Command{
 		Use:   "restore",
 		Short: "restore a snapshot",
-		Run: func(_ *cobra.Command, args []string) {
-			if len(args) < 1 {
-				log.Critical("destination path for restoring was not provided")
-			}
-			if len(args) > 1 {
-				log.Critical("more than one destination path was provided")
-			}
-			gkup.ExecPrintingStatus(
-				"-action=RESTORE",
-				"-repo="+repoPath,
-				"-snapshot-name="+snapName,
-				"-snapshot-time="+strconv.FormatInt(findSnap(snapTime, snapName), 10),
-				"-restore-destination="+args[0],
-				"-v="+strconv.FormatBool(verbose))
-		},
 	}
 )
 
 func init() {
 	cmdRoot.AddCommand(cmdBackup, cmdRestore)
+	cmdBackup.Run = backup
+	cmdRestore.Run = restore
 	cmdBackup.Flags().StringVarP(&snapName, "snapshot-name", "n", "", "Set the snapshot name (multiple snapshots can be grouped under the same name)")
 	cmdRestore.Flags().StringVarP(&snapName, "snapshot-name", "n", "", "Set the snapshot name (multiple snapshots can be grouped under the same name)")
 	cmdRestore.Flags().StringVarP(&snapTime, "snapshot-time", "t", "", "Set the snapshot time. Must be in \"YYYY/MM/DD hh:mm:ss\" format and can be partial")
+}
+
+func backup(_ *cobra.Command, args []string) {
+	if repoPath == "" {
+		cmdBackup.Help()
+		log.Critical("repository path not defined")
+	}
+
+	gkupArgs := []string{
+		"-action=BACKUP",
+		"-repo=" + repoPath,
+		"-snapshot-name=" + snapName,
+		"-v=" + strconv.FormatBool(verbose),
+	}
+	gkupArgs = append(gkupArgs, args...)
+	gkup.ExecPrintingStatus(gkupArgs...)
+}
+
+func restore(_ *cobra.Command, args []string) {
+	if repoPath == "" {
+		cmdRestore.Help()
+		log.Critical("repository path not defined")
+	}
+
+	if len(args) < 1 {
+		log.Critical("destination path for restoring was not provided")
+	}
+	if len(args) > 1 {
+		log.Critical("more than one destination path was provided")
+	}
+	gkup.ExecPrintingStatus(
+		"-action=RESTORE",
+		"-repo="+repoPath,
+		"-snapshot-name="+snapName,
+		"-snapshot-time="+strconv.FormatInt(findSnap(snapTime, snapName), 10),
+		"-restore-destination="+args[0],
+		"-v="+strconv.FormatBool(verbose))
 }
 
 func findSnap(query, snapName string) int64 {

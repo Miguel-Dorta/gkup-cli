@@ -22,6 +22,7 @@ func init() {
 		gkupCorePath = "gkup-core"
 	}
 
+	stop = make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt)
 }
 

@@ -1,7 +1,7 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/Miguel-Dorta/gkup-core v0.2.0 h1:+7AJx0N4e90dNQ7J8Jo73ZBF4Y8HyGDu0eikuk6LWFk=
-github.com/Miguel-Dorta/gkup-core v0.2.0/go.mod h1:YAqv1kBtLn5Alxd/szTYdmfpYxplOGTvKxzub3LLgLM=
+github.com/Miguel-Dorta/gkup-core v0.3.0 h1:i0FQxLh7LOojYUnT7UuMc3NIITJ0BfpbHhc75J6pSW0=
+github.com/Miguel-Dorta/gkup-core v0.3.0/go.mod h1:YAqv1kBtLn5Alxd/szTYdmfpYxplOGTvKxzub3LLgLM=
 github.com/Miguel-Dorta/logolang v0.5.1 h1:drWDDA6xmP1eKOtl9jS24PW1bvWapKmThhoIbZ4otGo=
 github.com/Miguel-Dorta/logolang v0.5.1/go.mod h1:ZGbUj/BQ6+M6FmHuXS8T2oZf2vkhRBfbiv1MsN746bI=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
@@ -117,7 +117,6 @@ golang.org/x/sys v0.0.0-20181107165924-66b7b1311ac8/go.mod h1:STP8DvDyc/dI5b8T5h
 golang.org/x/sys v0.0.0-20181116152217-5ac8a444bdc5/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20190412213103-97732733099d/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
-golang.org/x/sys v0.0.0-20190621203818-d432491b9138 h1:t8BZD9RDjkm9/h7yYN6kE8oaeov5r9aztkB7zKA5Tkg=
 golang.org/x/sys v0.0.0-20190621203818-d432491b9138/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20200420163511-1957bb5e6d1f h1:gWF768j/LaZugp8dyS4UwsslYCYz9XgFxvlgsn0n9H8=
 golang.org/x/sys v0.0.0-20200420163511-1957bb5e6d1f/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
